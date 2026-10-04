@@ -283,8 +283,9 @@ export default function HallOfFame() {
           className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none will-change-opacity"
         >
           <div className="flex flex-col items-center justify-center">
+            <img src="/logo.png" alt="Pixlvault Logo" className="w-24 h-24 mb-6 drop-shadow-[0_0_15px_rgba(100,200,255,0.8)] object-contain" />
             <h1 className="text-white text-4xl md:text-6xl font-light tracking-[0.4em] uppercase text-center px-4 drop-shadow-2xl">
-              Photography Platform
+              PIXLVAULT
             </h1>
           </div>
           <p className="absolute bottom-12 text-white/50 text-xs tracking-[0.3em] uppercase animate-pulse">

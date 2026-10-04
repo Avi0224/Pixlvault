@@ -1,31 +1,33 @@
-# Implementation Plan: UI Polish, Animations, and Alerts
+# Pixlvault Rebranding Implementation Plan
 
 ## Goal Description
-The objective is to refine the micro-interactions and transitions across the platform. We will add smooth, professional entry/exit animations for the hamburger menu and between page transitions. Furthermore, the upload success alert will be redesigned from a native browser alert into a high-craft, polished UI overlay.
+The objective is to rebrand the "Photography Platform" to **Pixlvault**. We will update the name across the application (metadata, loading screen) and introduce the newly provided glowing cube/camera logo. Following our design discussion, we will maintain the existing elegant, ultra-minimalist typography but enhance the initial Hall of Fame entrance and the global navigation by integrating the new icon.
 
 ## User Review Required
-> [!IMPORTANT]
-> **Page Transitions**
-> We are using Next.js `template.tsx` with `framer-motion` for page transitions. This applies a smooth fade-in effect to all pages as you navigate. 
-> For the 3D Homepage, the canvas will fade in smoothly, complementing your existing infinite scroll intro.
+No breaking changes. The aesthetics will remain clean and premium, just with a new brand identity.
 
 ## Proposed Changes
 
-### Navigation (`src/components/Navigation.tsx`)
-- **[MODIFY]** Add `framer-motion` to handle `AnimatePresence`.
-- **[MODIFY]** Create a staggered animation timeline: when you click the menu, the dark overlay drops in smoothly, followed by each navigation link sliding up one by one.
+### 1. Asset Management
+- **Action**: Copy the uploaded logo to the `public/` directory as `logo.png` and configure it as the primary favicon.
+- **Why**: Ensures the logo is statically served and can be referenced easily by Next.js components and metadata.
 
-### Page Transitions (`src/app/template.tsx`)
-- **[NEW]** Create a `template.tsx` file in the root `app` directory. This is the official Next.js way to handle per-page mount animations.
-- **[NEW]** Wrap the content in a `motion.div` that fades up slightly on initial load and whenever a new page is visited.
+### 2. Global Metadata (`layout.tsx`)
+- **Action**: Update the `<title>` and `<meta name="description">` from "Photography Portfolio" to "Pixlvault - Photography Portfolio".
+- **Action**: Add metadata link to use the new logo as the favicon.
 
-### Upload Experience (`src/app/upload/page.tsx`)
-- **[MODIFY]** Remove `alert("Upload successful...")`.
-- **[MODIFY]** Introduce an in-line, beautifully animated success overlay. When an upload finishes, the form dims and a central success component fades in, featuring a satisfying checkmark animation and a clean "Return to Gallery" or "Upload More" action.
+### 3. Start Screen (`HallOfFame.tsx`)
+- **Action**: Replace the text "Photography Platform" with "PIXLVAULT".
+- **Action**: Add an `<img>` tag for the new logo right above the text in the introductory scroll screen. It will smoothly fade in along with the text.
+- **Action**: Add styling to keep the ultra-minimalist vibe (thin, widely spaced letters) per your request, while sizing the logo appropriately so it doesn't overwhelm the text.
+
+### 4. Navigation Menu (`Navigation.tsx`)
+- **Action**: Add a small, elegant version of the new logo in the top-left of the screen (or inside the navigation menu) to anchor the branding on every page.
+- **Action**: Make the logo a clickable link that returns the user to the Hall of Fame.
 
 ## Verification Plan
 
 ### Manual Verification
-1. Click the hamburger menu and verify the staggered entry and clean exit animations.
-2. Navigate between "Upload", "Explore", and "Hall of Fame" to observe the soft cross-fade page transitions.
-3. Perform a test upload on the Upload page and verify the new, professional success toast/overlay appears seamlessly.
+1. Open the app in the browser and verify the browser tab says "Pixlvault" and shows the new icon.
+2. Refresh the homepage and verify the new logo sits beautifully above the "PIXLVAULT" text in the 3D scroll entrance.
+3. Open the hamburger menu or check the top-left corner to verify the logo appears globally.

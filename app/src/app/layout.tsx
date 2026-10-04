@@ -7,8 +7,11 @@ import Navigation from "@/components/Navigation";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Photography 3D Platform",
-  description: "An exclusive platform for the world's best photography.",
+  title: "Pixlvault - Photography Portfolio",
+  description: "A breathtaking 3D showcase and gallery of exceptional photography.",
+  icons: {
+    icon: '/logo.png',
+  }
 };
 
 export default function RootLayout({

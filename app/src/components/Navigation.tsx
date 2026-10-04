@@ -52,6 +52,15 @@ export default function Navigation() {
 
   return (
     <>
+      {/* Brand Logo - Top Left */}
+      <Link href="/" className="fixed top-6 left-6 z-50 mix-blend-difference group">
+        <img 
+          src="/logo.png" 
+          alt="Pixlvault" 
+          className="w-10 h-10 object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] group-hover:scale-110 transition-transform duration-300"
+        />
+      </Link>
+
       <button
         onClick={toggleMenu}
         className="fixed top-6 right-6 z-50 p-2 text-white mix-blend-difference hover:opacity-70 transition-opacity"
