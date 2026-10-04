@@ -20,7 +20,7 @@ export default function UserProfile({ params }: { params: Promise<{ uid: string 
           orderBy("createdAt", "desc")
         );
         const snapshot = await getDocs(q);
-        const fetched = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const fetched = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as any));
         setPhotos(fetched);
         
         if (fetched.length > 0) {

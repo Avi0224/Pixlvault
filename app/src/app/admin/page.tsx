@@ -5,9 +5,20 @@ import { db } from "@/lib/firebase";
 import { collection, query, getDocs, updateDoc, doc, deleteDoc, orderBy } from "firebase/firestore";
 import { Check, X, Star, Trash2 } from "lucide-react";
 
+interface Photo {
+  id: string;
+  userId: string;
+  userName: string;
+  title: string;
+  status: string;
+  storageUrl: string;
+  featured: boolean;
+  createdAt?: any;
+}
+
 export default function AdminPage() {
   const { isAdmin } = useStore();
-  const [photos, setPhotos] = useState<any[]>([]);
+  const [photos, setPhotos] = useState<Photo[]>([]);
 
   useEffect(() => {
     if (isAdmin) {
@@ -18,7 +29,7 @@ export default function AdminPage() {
   const fetchPhotos = async () => {
     const q = query(collection(db, "photos"), orderBy("createdAt", "desc"));
     const snapshot = await getDocs(q);
-    const fetched = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    const fetched = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Photo));
     setPhotos(fetched);
   };
 
@@ -62,7 +73,7 @@ export default function AdminPage() {
     }
     acc[photo.userId].photos.push(photo);
     return acc;
-  }, {} as Record<string, { userName: string, photos: any[] }>);
+  }, {} as Record<string, { userName: string, photos: Photo[] }>);
 
   return (
     <div className="min-h-screen pt-32 px-6 max-w-7xl mx-auto">

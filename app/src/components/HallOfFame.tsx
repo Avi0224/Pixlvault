@@ -9,7 +9,7 @@ import { X } from "lucide-react";
 import { db } from "@/lib/firebase";
 import { collection, query, getDocs, where } from "firebase/firestore";
 
-function MotionBlurEffect({ containerRef }: { containerRef: React.RefObject<HTMLDivElement> }) {
+function MotionBlurEffect({ containerRef }: { containerRef: React.RefObject<HTMLDivElement | null> }) {
   const lastQuat = useRef(new THREE.Quaternion());
   const lastPos = useRef(new THREE.Vector3());
   const currentBlur = useRef(0);
