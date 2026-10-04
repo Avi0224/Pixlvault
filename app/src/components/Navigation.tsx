@@ -24,7 +24,7 @@ export default function Navigation() {
       opacity: 1,
       transition: { 
         duration: 0.4, 
-        ease: [0.22, 1, 0.36, 1], // easeOutQuint
+        ease: [0.22, 1, 0.36, 1] as const, // easeOutQuint
         staggerChildren: 0.1,
         delayChildren: 0.1
       }
@@ -33,7 +33,7 @@ export default function Navigation() {
       opacity: 0,
       transition: { 
         duration: 0.3,
-        ease: [0.22, 1, 0.36, 1]
+        ease: [0.22, 1, 0.36, 1] as const
       }
     }
   };
@@ -45,7 +45,7 @@ export default function Navigation() {
       opacity: 1,
       transition: { 
         duration: 0.5, 
-        ease: [0.22, 1, 0.36, 1] 
+        ease: [0.22, 1, 0.36, 1] as const 
       }
     }
   };

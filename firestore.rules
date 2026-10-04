@@ -1,0 +1,29 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Check if the requester is the admin
+    function isAdmin() {
+      return request.auth != null && request.auth.uid == 'VS2aXx9NgNQnxH5BOiE6G3FDd4B2';
+    }
+
+    match /photos/{photoId} {
+      // Anyone can read approved photos
+      allow read: if resource.data.status == 'approved';
+      
+      // Users can read their own pending/approved photos
+      allow read: if request.auth != null && resource.data.userId == request.auth.uid;
+      
+      // Admin can read all photos
+      allow read: if isAdmin();
+      
+      // Users can upload photos but must set their own userId and status to 'pending'
+      allow create: if request.auth != null 
+                    && request.resource.data.userId == request.auth.uid
+                    && request.resource.data.status == 'pending';
+                    
+      // Only admin can update (approve/feature) or delete photos
+      allow update, delete: if isAdmin();
+    }
+  }
+}
