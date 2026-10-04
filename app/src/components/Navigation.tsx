@@ -54,11 +54,9 @@ export default function Navigation() {
     <>
       {/* Brand Logo - Top Left */}
       <Link href="/" className="fixed top-6 left-6 z-50 mix-blend-difference group">
-        <img 
-          src="/logo.png" 
-          alt="Pixlvault" 
-          className="w-10 h-10 object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] group-hover:scale-110 transition-transform duration-300"
-        />
+        <h1 className="text-white text-xl md:text-2xl font-light tracking-[0.3em] uppercase group-hover:scale-105 transition-transform duration-300 drop-shadow-lg">
+          PIXLVAULT
+        </h1>
       </Link>
 
       <button
