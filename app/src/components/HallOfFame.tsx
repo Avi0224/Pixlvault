@@ -311,7 +311,7 @@ export default function HallOfFame() {
             </button>
             
             {/* Image Section */}
-            <div className="w-full md:w-[70%] h-64 md:h-[90vh] bg-black flex items-center justify-center p-8">
+            <div className="w-full md:w-[70%] max-h-[50vh] min-h-[35vh] md:max-h-none md:h-[90vh] bg-black flex items-center justify-center p-4 md:p-8">
               <img 
                 src={selectedPhoto.storageUrl} 
                 alt={selectedPhoto.title} 
@@ -320,7 +320,7 @@ export default function HallOfFame() {
             </div>
             
             {/* Details Section */}
-            <div className="w-full md:w-[30%] p-10 flex flex-col justify-center bg-gray-950 border-l border-gray-900">
+            <div className="w-full md:w-[30%] p-6 md:p-10 flex flex-col justify-center bg-gray-950 border-0 md:border-l border-gray-900">
               <h2 className="text-3xl font-light tracking-widest uppercase mb-4 text-white leading-tight">
                 {selectedPhoto.title}
               </h2>

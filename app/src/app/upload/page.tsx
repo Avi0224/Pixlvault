@@ -121,7 +121,7 @@ export default function UploadPage() {
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md"
           >
-            <div className="bg-gray-950 border border-white/10 p-12 max-w-lg w-full flex flex-col items-center text-center shadow-2xl relative overflow-hidden">
+            <div className="bg-gray-950 border border-white/10 p-6 md:p-12 max-w-lg w-full flex flex-col items-center text-center shadow-2xl relative overflow-hidden">
               <button 
                 onClick={() => setShowSuccess(false)}
                 className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors"
