@@ -259,8 +259,8 @@ export default function HallOfFame() {
       )}
       
       {/* 3D Interaction Helper */}
-      <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50 text-xs tracking-[0.3em] uppercase pointer-events-none transition-opacity duration-300 ${selectedPhoto ? 'opacity-0' : 'opacity-100'} z-10`}>
-        Drag to rotate • Scroll to fly
+      <div className={`absolute bottom-10 w-full text-center text-white/50 text-[10px] md:text-xs tracking-[0.3em] uppercase pointer-events-none transition-opacity duration-300 ${selectedPhoto ? 'opacity-0' : 'opacity-100'} z-10`}>
+        Scroll down to enter &nbsp;•&nbsp; Drag to rotate or fly
       </div>
 
       {/* GPU Accelerated Impactful Aperture Mask */}
@@ -287,9 +287,6 @@ export default function HallOfFame() {
               PIXLVAULT
             </h1>
           </div>
-          <p className="absolute bottom-12 text-white/50 text-xs tracking-[0.3em] uppercase animate-pulse">
-            Scroll to enter
-          </p>
         </div>
       </div>
 
