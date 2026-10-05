@@ -1,6 +1,6 @@
 "use client";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Image as DreiImage, OrbitControls } from "@react-three/drei";
+import { Image as DreiImage, OrbitControls, Loader } from "@react-three/drei";
 import { useRef, useState, useMemo, useEffect } from "react";
 import * as THREE from "three";
 import Link from "next/link";
@@ -9,34 +9,6 @@ import { X } from "lucide-react";
 import { db } from "@/lib/firebase";
 import { collection, query, getDocs, where } from "firebase/firestore";
 
-function MotionBlurEffect({ containerRef }: { containerRef: React.RefObject<HTMLDivElement | null> }) {
-  const lastQuat = useRef(new THREE.Quaternion());
-  const lastPos = useRef(new THREE.Vector3());
-  const currentBlur = useRef(0);
-  
-  useFrame((state) => {
-    const angle = lastQuat.current.angleTo(state.camera.quaternion);
-    const dist = lastPos.current.distanceTo(state.camera.position);
-    
-    lastQuat.current.copy(state.camera.quaternion);
-    lastPos.current.copy(state.camera.position);
-    
-    // Reduced multipliers for a subtle, premium motion blur
-    const targetBlur = Math.min(4, (angle * 150) + (dist * 2));
-    
-    // Smooth the blur for a natural trail effect
-    currentBlur.current = THREE.MathUtils.lerp(currentBlur.current, targetBlur, 0.15);
-    
-    if (containerRef.current) {
-      if (currentBlur.current > 0.1) {
-         containerRef.current.style.filter = `blur(${currentBlur.current.toFixed(1)}px)`;
-      } else {
-         containerRef.current.style.filter = `none`;
-      }
-    }
-  });
-  return null;
-}
 
 function IntroCameraAnim({ scrollRef }: { scrollRef: React.MutableRefObject<number> }) {
   const LOOP_LENGTH = 3000;
@@ -238,7 +210,6 @@ export default function HallOfFame() {
           <ambientLight intensity={0.5} />
           
           <IntroCameraAnim scrollRef={scrollRef} />
-          <MotionBlurEffect containerRef={canvasContainerRef} />
           
           {photos.length > 0 && <SphereGallery photos={photos} onSelect={setSelectedPhoto} />}
           
@@ -251,6 +222,13 @@ export default function HallOfFame() {
         </Canvas>
       </div>
       
+      <Loader 
+        containerStyles={{ background: '#000' }}
+        dataInterpolation={(p) => `LOADING ${p.toFixed(0)}%`}
+        dataStyles={{ color: 'white', letterSpacing: '0.3em', fontSize: '10px', fontFamily: 'monospace' }}
+        barStyles={{ background: 'white', height: '2px' }}
+      />
+      
       {/* Empty State */}
       {photos.length === 0 && (
         <div className="absolute inset-0 flex items-center justify-center text-gray-600 uppercase tracking-widest text-sm pointer-events-none z-10">
@@ -260,7 +238,7 @@ export default function HallOfFame() {
       
       {/* 3D Interaction Helper */}
       <div className={`absolute bottom-10 w-full text-center text-white/50 text-[10px] md:text-xs tracking-[0.3em] uppercase pointer-events-none transition-opacity duration-300 ${selectedPhoto ? 'opacity-0' : 'opacity-100'} z-10`}>
-        Scroll down to enter &nbsp;•&nbsp; Drag to rotate or fly
+        DRAG TO FLY
       </div>
 
       {/* GPU Accelerated Impactful Aperture Mask */}
