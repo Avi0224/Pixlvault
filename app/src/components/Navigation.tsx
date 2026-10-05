@@ -53,15 +53,15 @@ export default function Navigation() {
   return (
     <>
       {/* Brand Logo - Top Left */}
-      <Link href="/" className="fixed top-6 left-6 z-50 mix-blend-difference group">
+      <Link href="/" className="fixed top-6 left-6 z-[100] mix-blend-difference group">
         <h1 className="text-white text-xl md:text-2xl font-light tracking-[0.3em] uppercase group-hover:scale-105 transition-transform duration-300 drop-shadow-lg">
           PIXLVAULT
         </h1>
       </Link>
 
       <button
-        onClick={toggleMenu}
-        className="fixed top-6 right-6 z-50 p-2 text-white mix-blend-difference hover:opacity-70 transition-opacity"
+        onClick={() => toggleMenu()}
+        className="fixed top-6 right-6 z-[100] p-2 text-white mix-blend-difference hover:opacity-70 transition-opacity cursor-pointer"
       >
         {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
       </button>
@@ -73,30 +73,30 @@ export default function Navigation() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed inset-0 z-40 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center text-white"
+            className="fixed inset-0 z-[90] bg-black/90 backdrop-blur-md flex flex-col items-center justify-center text-white"
           >
             <nav className="flex flex-col items-center gap-8 text-4xl font-light tracking-widest">
               <motion.div variants={itemVariants}>
-                <Link href="/" onClick={toggleMenu} className="hover:text-gray-400 transition-colors">
+                <Link href="/" onClick={() => toggleMenu()} className="hover:text-gray-400 transition-colors">
                   Hall of Fame
                 </Link>
               </motion.div>
               
               <motion.div variants={itemVariants}>
-                <Link href="/explore" onClick={toggleMenu} className="hover:text-gray-400 transition-colors">
+                <Link href="/explore" onClick={() => toggleMenu()} className="hover:text-gray-400 transition-colors">
                   Explore
                 </Link>
               </motion.div>
               
               <motion.div variants={itemVariants}>
-                <Link href="/upload" onClick={toggleMenu} className="hover:text-gray-400 transition-colors">
+                <Link href="/upload" onClick={() => toggleMenu()} className="hover:text-gray-400 transition-colors">
                   Upload
                 </Link>
               </motion.div>
               
               {isAdmin && (
                 <motion.div variants={itemVariants}>
-                  <Link href="/admin" onClick={toggleMenu} className="hover:text-amber-500/80 transition-colors text-amber-500">
+                  <Link href="/admin" onClick={() => toggleMenu()} className="hover:text-amber-500/80 transition-colors text-amber-500">
                     Admin
                   </Link>
                 </motion.div>
